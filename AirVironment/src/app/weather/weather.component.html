@@ -1,9 +1,9 @@
 <div>
   <h1>AirVironment</h1>
-  <div>
-    <h5>Latest update: </h5>
-    <p>Temperature: </p>
-    <p>Humidity: </p>
-    <p>Pollution: </p>
+  <div *ngIf='weather'>
+    <h5>Latest update: {{ weather.timestamp | date: 'dd.MM.yyyy H:mm' }}</h5>
+    <p>Temperature: {{ weather.temperature }}&#8451;</p>
+    <p>Humidity: {{ weather.humidity }}%</p>
+    <p>Pollution: {{ weather.pollution }}</p>
   </div>
 </div>
