@@ -1,9 +1,14 @@
-<div>
+<div class="container-fluid">
   <h1>AirVironment</h1>
-  <div *ngIf='weather'>
+  <div *ngIf='weather; else no_data'>
     <h5>Latest update: {{ weather.timestamp | date: 'dd.MM.yyyy H:mm' }}</h5>
-    <p>Temperature: {{ weather.temperature }}&#8451;</p>
-    <p>Humidity: {{ weather.humidity }}%</p>
-    <p>Pollution: {{ weather.pollution }}</p>
+    <p><i class="fa fa-thermometer-half"></i> Temperature: {{ weather.temperature }}&#8451;</p>
+    <p><i class="fa fa-tint"></i> Humidity: {{ weather.humidity }}%</p>
+    <p><i class="fa fa-car"></i> Pollution: {{ weather.pollution }}</p>
   </div>
+
+  <button [routerLink]="['weather-table']" (click)="showComp2 = true">Results</button>
+  <app-weather-table *ngIf="showComp2" [temperature]="temperature" [humidity]="humidity" 
+  [pollution]="pollution" [timestamps]="timestamps"></app-weather-table>
 </div>
+<ng-template #no_data>No data<br>Check your connection<br></ng-template>
