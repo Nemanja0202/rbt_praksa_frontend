@@ -8,6 +8,9 @@
   </div>
 
   <button [routerLink]="['weather-table']" (click)="showComp2 = true">Results</button>
+  <div *ngIf="chart">
+    <canvas #canvas id="canvas" style="height:400px; width: content-box;">{{ chart }}</canvas>
+  </div>
   <app-weather-table *ngIf="showComp2" [temperature]="temperature" [humidity]="humidity" 
   [pollution]="pollution" [timestamps]="timestamps"></app-weather-table>
 </div>
