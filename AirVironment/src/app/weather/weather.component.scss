@@ -13,8 +13,9 @@ h1 {
   }
   
   button {
-    background: rgb(1, 29, 51);
+    background: rgba(1, 29, 51, 0.6);
     border-color: transparent;
     color: #fff;
     cursor: pointer;
+    border-radius: 5px;
   }
