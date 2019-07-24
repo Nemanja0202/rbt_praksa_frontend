@@ -1,21 +1,37 @@
 h1 {
-    margin: 0;
-    padding-top: 50px;
+  margin: 0;
+  padding-top: 50px;
+}
+.container-fluid {
+  text-align: center;
+  font-size: 20px;
+  color: white;
+
+  .chart-container {
+    width: 80vw;
+    height: 50vh;
+    margin: 0 auto;
   }
-  .container-fluid {
-    text-align: center;
-    font-size: 20px;
-    color: white;
-    background: rgb(218,107,20);
-    background: linear-gradient(0deg, rgba(218,107,20,1) 0%, rgba(102,184,136,1) 100%);
-    width: 100vw;
-    
+
+  .weather-data {
+    padding-top: 20px;
+
+    .weather-time {
+      font-size: 12px;
+    }
   }
-  
-  button {
-    background: rgba(1, 29, 51, 0.6);
-    border-color: transparent;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
+}
+
+ul {
+  list-style-type: none;
+  li {
+    margin-left: -40px;
   }
+}
+
+button {
+  background: transparent;
+  border-color: beige;
+  color: #fff;
+  cursor: pointer;
+} 

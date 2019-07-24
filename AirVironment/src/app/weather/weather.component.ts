@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Weather } from './weather.model';
 import { WeatherService } from './weather.service';
 import { Router, ActivatedRoute } from '@angular/router'
 import { Chart } from 'chart.js';
+import { first } from 'rxjs/operators';
+
+import { User } from '../_models/user';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-weather',
@@ -19,10 +23,20 @@ export class WeatherComponent implements OnInit {
   pollution: any = [];
   temperature: any = [];
   timestamps: any = [];
+  users: User[] = [];
   initiated = false;
 
+  @HostListener('window:popstate', ['$event'])
+  onpopstate(event) {
+    console.log('Back button pressed');
+    // Here you can handle your modal
+    this.showComp2 = false;
+    this.router.navigate(['home'], {relativeTo: this.route})
+  }
+
   constructor(private weatherService: WeatherService,
-              private router: Router,
+              private userService: UserService,
+              private router: Router, 
               private route: ActivatedRoute) { }
 
   getWeatherData(): void {
@@ -117,6 +131,9 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit() {
     this.getWeatherData();
+    this.userService.getAll().pipe(first()).subscribe(users => {
+      this.users = users;
+    });
     this.interval = setInterval(() => {
       this.getWeatherData();
     }, 3000);

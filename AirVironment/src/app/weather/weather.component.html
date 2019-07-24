@@ -1,13 +1,24 @@
+<app-navbar></app-navbar>
+
 <div class="container-fluid">
-  <h1>AirVironment</h1>
-  <div *ngIf='weather; else no_data'>
-    <h5>Latest update: {{ weather.timestamp | date: 'dd.MM.yyyy H:mm' }}</h5>
-    <p><i class="fa fa-thermometer-half"></i> Temperature: {{ weather.temperature }}&#8451;</p>
-    <p><i class="fa fa-tint"></i> Humidity: {{ weather.humidity }}%</p>
-    <p><i class="fa fa-car"></i> Pollution: {{ weather.pollution }}</p>
+  <div class="weather-data" *ngIf='weather; else no_data'>
+    <h5 class="weather-time">Latest update: {{ weather.timestamp | date: 'dd.MM.yyyy H:mm' }}</h5>
+    <p><i class="fa fa-thermometer-half"></i> Temperature: {{ weather.temperature | number:'1.0-0' }}&#8451;</p>
+    <p><i class="fa fa-tint"></i> Humidity: {{ weather.humidity | number:'1.0-0' }}%</p>
+    <p><i class="fa fa-car"></i> Pollution: {{ weather.pollution | number:'1.0-0' }}</p>
   </div>
 
-  <button [routerLink]="['weather-table']" (click)="showComp2 = true">Results</button>
+  <div>
+    Users from secure api end point:
+    <ul>
+      <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+    </ul>
+  </div>
+
+  <div>
+    <button type="button" class="btn btn-outline-light" [routerLink]="['weather-table']" (click)="showComp2 = !showComp2">Results</button>
+  </div>
+  
   <div *ngIf="chart">
     <canvas #canvas id="canvas" style="height:400px; width: content-box;">{{ chart }}</canvas>
   </div>
